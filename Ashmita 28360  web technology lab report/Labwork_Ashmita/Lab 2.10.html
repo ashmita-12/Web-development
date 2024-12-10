@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 2.10</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h2>Load External Content</h2>
+    <button id="loadContent">Load Content</button>
+    <div id="contentArea" style="border: 1px solid #ccc; padding: 10px; margin-top: 10px;">
+        <!-- Content from data.html will be loaded here -->
+    </div>
+    <script>
+        $(document).ready(function() {
+            $('#loadContent').click(function() {
+                // Use AJAX to load content from data.html into the #contentArea div
+                $('#contentArea').load('data.html', function(response, status, xhr) {
+                    if (status == "error") {
+                        $('#contentArea').html("An error occurred while loading the content: " + xhr.status + " " + xhr.statusText);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

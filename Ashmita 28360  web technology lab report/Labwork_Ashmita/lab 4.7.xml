@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="lab 4.7.xsl"?>
+<contacts>
+    <contact>
+        <name>Ashmita Dahal</name>
+        <address>Jorpati, Kathmandu</address>
+        <city>Kathmandu</city>
+        <email>Ashmita@gmail.com</email>
+        <phone>+977-9843957746</phone>
+    </contact>
+    <contact>
+        <name>Bhawana Dahal</name>
+        <address>Thali, Kathmandu</address>
+        <city>Kathmandu</city>
+        <email>Bhawana@gmail.com</email>
+        <phone>+977-9861545542</phone>
+    </contact>
+</contacts>

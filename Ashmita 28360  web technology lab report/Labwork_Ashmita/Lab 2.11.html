@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 2.11</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #box {
+            width: 300px;
+            height: 200px;
+            background-color: #4CAF50;
+            margin: 20px;
+            padding: 20px;
+            color: white;
+            display: none; /* Start hidden */
+        }
+    </style>
+</head>
+<body>
+    <h2>jQuery Chaining with slideUp and slideDown</h2>
+
+    <button id="toggleBox">Toggle Box</button>
+
+    <div id="box">
+        <p>This is a box that can slide up and down using jQuery chaining!</p>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#toggleBox').click(function() {
+                // Chaining slideUp and slideDown methods
+                $('#box').slideDown(1000).delay(1000).slideUp(1000);
+            });
+        });
+    </script>
+</body>
+</html>

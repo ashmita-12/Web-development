@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centipede Monster Attack</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background-color: #000; /* Black background */
+            overflow: hidden;
+            cursor: crosshair;
+            font-family: Arial, sans-serif;
+        }
+
+        .segment {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #fff; /* White centipede segments */
+            border-radius: 50%;
+            pointer-events: none;
+            transition: transform 0.1s linear;
+        }
+
+        .segment.head {
+            background-color: #ff6347; /* Red head */
+            border-radius: 50% 50% 0 0; /* Give the head a more monstrous shape */
+            width: 25px;
+            height: 25px;
+            transform-origin: center; /* Center rotation for the head */
+        }
+
+        .segment.eye {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: #000;
+            border-radius: 50%;
+            top: 4px;
+        }
+
+        .eye.left {
+            left: 5px;
+        }
+
+        .eye.right {
+            right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="segment head" id="head">
+        <div class="segment eye left"></div>
+        <div class="segment eye right"></div>
+    </div>
+    <div class="segment" id="segment1"></div>
+    <div class="segment" id="segment2"></div>
+    <div class="segment" id="segment3"></div>
+    <div class="segment" id="segment4"></div>
+    <div class="segment" id="segment5"></div>
+
+    <script>
+        const segments = [
+            document.getElementById('head'),
+            document.getElementById('segment1'),
+            document.getElementById('segment2'),
+            document.getElementById('segment3'),
+            document.getElementById('segment4'),
+            document.getElementById('segment5'),
+        ];
+
+        const segmentPositions = segments.map(() => ({ x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight }));
+        const segmentSpeed = 1.5;
+
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+
+        document.addEventListener('mousemove', function(event) {
+            mouseX = event.clientX;
+            mouseY = event.clientY;
+        });
+
+        function moveCentipede() {
+            for (let i = 0; i < segments.length; i++) {
+                let targetX, targetY;
+
+                if (i === 0) {
+                    // Head moves towards the cursor
+                    targetX = mouseX;
+                    targetY = mouseY;
+                } else {
+                    // Other segments follow the one in front
+                    targetX = segmentPositions[i - 1].x;
+                    targetY = segmentPositions[i - 1].y;
+                }
+
+                let dx = targetX - segmentPositions[i].x;
+                let dy = targetY - segmentPositions[i].y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                let velocityX = (dx / distance) * segmentSpeed;
+                let velocityY = (dy / distance) * segmentSpeed;
+
+                segmentPositions[i].x += velocityX;
+                segmentPositions[i].y += velocityY;
+
+                segments[i].style.transform = `translate(${segmentPositions[i].x}px, ${segmentPositions[i].y}px)`;
+            }
+
+            checkAttack();
+            requestAnimationFrame(moveCentipede);
+        }
+
+        function checkAttack() {
+            let headX = segmentPositions[0].x + 12.5; // Offset by half head width
+            let headY = segmentPositions[0].y + 12.5; // Offset by half head height
+            let dx = mouseX - headX;
+            let dy = mouseY - headY;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < 25) {
+                alert('The centipede attacked you!');
+            }
+        }
+
+        moveCentipede();
+    </script>
+
+</body>
+</html>

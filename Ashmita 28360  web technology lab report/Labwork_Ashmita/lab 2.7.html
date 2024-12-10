@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<head>
+    <title>Lab 2.7</title>
+</head>
+<body>
+    <h2>Email Validation Form</h2>
+    <form id="emailForm">
+        <label for="email">Enter your email:</label>
+        <input type="text" id="email" name="email">
+        <button type="button" onclick="validateEmailInput()">Validate</button>
+    </form>  <p id="result"></p>
+    <script>
+        // Function to validate email addresses
+        function validateEmail(email) {
+            // Regular expression for validating email addresses
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            // Test the email against the pattern
+            return emailPattern.test(email);
+        }
+        // Function to validate email from input
+        function validateEmailInput() {
+            // Get the email input from the form
+            const email = document.getElementById('email').value;
+            const result = document.getElementById('result');
+            // Validate the email and display the result
+            if (validateEmail(email)) {
+                result.textContent = `${email} is a valid email address.`;
+                result.style.color = "green";
+            } else {
+                result.textContent = `${email} is not a valid email address.`;
+                result.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>

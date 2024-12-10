@@ -1,0 +1,4 @@
+Name,Age,Occupation
+Ashmita Dahal,28,Student
+Jane Smith,34,Doctor
+Emily Davis,22,Artist

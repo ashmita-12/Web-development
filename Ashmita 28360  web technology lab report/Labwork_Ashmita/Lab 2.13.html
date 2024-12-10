@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<head>
+    <title>Lab 2.13</title>
+    <style>
+        /* Basic styles for the div element */
+        #animateBox {
+            width: 200px;
+            height: 200px;
+            background-color: #4CAF50;
+            margin: 50px auto;
+            opacity: 1;
+        }
+        /* Button styling */
+        #animateButton {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        #animateButton:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="animateBox"></div>
+    <button id="animateButton">Animate</button>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#animateButton').click(function() {
+                $('#animateBox')
+                    .animate({ width: '400px' }, 1000)    // Animate width
+                    .animate({ height: '400px' }, 1000)   // Animate height
+                    .animate({ opacity: 0.5 }, 1000);     // Animate opacity
+            });
+        });
+    </script>
+</body>
+</html>

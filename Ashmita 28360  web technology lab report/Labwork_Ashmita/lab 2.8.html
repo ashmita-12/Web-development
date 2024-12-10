@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<head>
+    <title>Lab 2.8</title>
+</head>
+<body>
+    <h2>Cookie Operations</h2>
+    <form id="cookieForm">
+        <label for="cookieName">Cookie Name:</label>
+        <input type="text" id="cookieName" name="cookieName"><br><br>
+        <label for="cookieValue">Cookie Value:</label>
+        <input type="text" id="cookieValue" name="cookieValue"><br><br>
+        <label for="cookieDays">Days to Expire:</label>
+        <input type="number" id="cookieDays" name="cookieDays" value="7"><br><br>
+        <button type="button" onclick="setCookieFromForm()">Set Cookie</button>
+        <button type="button" onclick="getCookieFromForm()">Get Cookie</button>
+        <button type="button" onclick="deleteCookieFromForm()">Delete Cookie</button>
+    </form>
+    <p id="result"></p>
+    <script>
+        // Function to set a cookie
+        function setCookie(name, value, days) {
+            const d = new Date();
+            d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000)); // Set expiration time
+            const expires = "expires=" + d.toUTCString();
+            document.cookie = `${name}=${value};${expires};path=/`;
+        }
+        // Function to get a cookie
+        function getCookie(name) {
+            const cname = name + "=";
+            const decodedCookie = decodeURIComponent(document.cookie);
+            const cookieArray = decodedCookie.split(';');
+            for (let i = 0; i < cookieArray.length; i++) {
+                let c = cookieArray[i].trim();
+                if (c.indexOf(cname) === 0) {
+                    return c.substring(cname.length, c.length);
+                }
+            }
+            return "";
+        }
+        // Function to delete a cookie
+        function deleteCookie(name) {
+            setCookie(name, "", -1);
+        }
+        // Function to set a cookie from the form input
+        function setCookieFromForm() {
+            const name = document.getElementById('cookieName').value;
+            const value = document.getElementById('cookieValue').value;
+            const days = document.getElementById('cookieDays').value;
+
+            if (name && value) {
+                setCookie(name, value, days);
+                document.getElementById('result').textContent = `Cookie "${name}" set with value "${value}".`;
+            } else {
+                document.getElementById('result').textContent = "Please provide a cookie name and value.";
+            }
+        }
+        // Function to get a cookie from the form input
+        function getCookieFromForm() {
+            const name = document.getElementById('cookieName').value;
+            const value = getCookie(name);
+
+            if (value) {
+                document.getElementById('result').textContent = `Cookie "${name}" has value "${value}".`;
+            } else {
+                document.getElementById('result').textContent = `Cookie "${name}" not found.`;
+            }
+        }
+        // Function to delete a cookie from the form input
+        function deleteCookieFromForm() {
+            const name = document.getElementById('cookieName').value;
+            if (name) {
+                deleteCookie(name);
+                document.getElementById('result').textContent = `Cookie "${name}" deleted.`;
+            } else {
+                document.getElementById('result').textContent = "Please provide a cookie name.";
+            }
+        }
+    </script>
+</body>
+</html>

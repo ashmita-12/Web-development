@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>LAb 2.5</title>
+    <style>
+        .error {
+            color: red;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>User Registration Form</h2>
+    <form id="registrationForm" onsubmit="return validateForm()">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username">
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+        </div>
+        <div>
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword">
+        </div>
+        <div class="error" id="errorMessage"></div>
+        <div>
+            <button type="submit">Register</button>
+        </div>
+    </form>
+    <script>
+        function validateForm() {
+    // Get form fields
+    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    const errorMessage = document.getElementById('errorMessage');
+    // Clear previous error message
+    errorMessage.textContent = '';
+    // Validate that all fields are filled out
+    if (username === '' || email === '' || password === '' || confirmPassword === '') {
+        errorMessage.textContent = 'All fields are required.';
+        return false;
+    }
+    // Validate email format using a regular expression
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    if (!emailPattern.test(email)) {
+        errorMessage.textContent = 'Please enter a valid email address.';
+        return false;
+    }
+    // Validate password match
+    if (password !== confirmPassword) {
+        errorMessage.textContent = 'Passwords do not match.';
+        return false;
+    }
+    // If all validations pass
+    alert('Registration successful!');
+    return true;
+}
+    </script>
+</body>
+</html>

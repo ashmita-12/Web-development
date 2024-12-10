@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 2.9</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h2>Select Your Favorite Fruit</h2>
+    <select id="fruitDropdown">
+        <option value="apple">Apple</option>
+        <option value="banana">Banana</option>
+        <option value="cherry">Cherry</option>
+        <option value="date">Date</option>
+        <option value="elderberry">Elderberry</option>
+    </select>
+    <button id="getSelected">Get Selected Value and Text</button>
+    <p id="result"></p>
+    <script>
+        $(document).ready(function() {
+            $('#getSelected').click(function() {
+                // Get the selected value
+                var selectedValue = $('#fruitDropdown').val();
+
+                // Get the selected text
+                var selectedText = $('#fruitDropdown option:selected').text();
+
+                // Display the result
+                $('#result').text(`Selected Value: ${selectedValue}, Selected Text: ${selectedText}`);
+            });
+        });
+    </script>
+</body>
+</html>

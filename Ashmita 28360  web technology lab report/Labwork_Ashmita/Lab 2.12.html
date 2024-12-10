@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<head>
+    <title>Lab 2.12</title>
+    <style>
+        #slider {
+            width: 600px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .slides img {
+            width: 100%;
+            height: auto;
+        }
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 24px;
+        }
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Slider with Array</h1>
+    <div id="slider">
+        <div class="slides"></div>
+        <button class="nav-button prev">&lt;</button>
+        <button class="nav-button next">&gt;</button>  </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Array of image URLs
+            var images = [
+                'FB_IMG_1699287021523.jpg',
+                 'd.jpg',
+                'FB_IMG_1699799791549.jpg'
+            ];
+            // Initialize slider index
+            var slideIndex = 0;
+            // Function to create slides from the array
+            function createSlides() {
+                var slidesContainer = $('.slides');
+                slidesContainer.empty(); // Clear any existing slides
+                $.each(images, function(index, image) {
+                    slidesContainer.append('<img src="' + image + '" alt="Slide ' + (index + 1) + '">');
+                });
+            }
+            // Function to show the slide based on index
+            function showSlide(index) {
+                var slideWidth = $('.slides img').width();
+                var offset = -index * slideWidth;
+                $('.slides').css('transform', 'translateX(' + offset + 'px)');
+            }
+            // Handle next button click
+            $('.next').click(function() {
+                slideIndex = (slideIndex + 1) % images.length;
+                showSlide(slideIndex);
+            });
+            // Handle previous button click
+            $('.prev').click(function() {
+                slideIndex = (slideIndex - 1 + images.length) % images.length;
+                showSlide(slideIndex);
+            });
+            // Initialize the slider
+            createSlides();
+            $('.slides img').on('load', function() {
+                showSlide(slideIndex);
+            });
+        });
+    </script>
+</body>
+</html>

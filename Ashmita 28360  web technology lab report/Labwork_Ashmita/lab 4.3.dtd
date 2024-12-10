@@ -1,0 +1,16 @@
+<!ELEMENT Books (Book+)>
+<!ELEMENT Book (Name, Author+, PageNo, Price)>
+<!ATTLIST Book
+    isbn CDATA #REQUIRED>
+
+<!ELEMENT Name (FirstName, MiddleName?, LastName)>
+<!ELEMENT FirstName (#PCDATA)>
+<!ELEMENT MiddleName (#PCDATA)>
+<!ELEMENT LastName (#PCDATA)>
+
+<!ELEMENT Author (#PCDATA)>
+
+<!ELEMENT PageNo (#PCDATA)>
+<!ELEMENT Price (#PCDATA)>
+<!ATTLIST Price 
+    max CDATA #FIXED "1000">

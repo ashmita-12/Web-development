@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Books SYSTEM "lab 4.3.dtd">
+<?xml-stylesheet type="text/xsl" href="lab 4.3.xsl"?>
+<Books>
+    <Book isbn="978-3-16-148410-0">
+        <Name>
+            <FirstName>Ashmita</FirstName>
+            <LastName>Dahal</LastName>
+        </Name>
+        <Author>Jane Smith</Author>
+        <Author>Emily Johnson</Author>
+        <PageNo>320</PageNo>
+        <Price max="1000">950</Price>
+    </Book>
+    <Book isbn="978-1-23-456789-7">
+        <Name>
+            <FirstName>Anna</FirstName>
+            <LastName>Brown</LastName>
+        </Name>
+        <Author>George Martin</Author>
+        <PageNo>450</PageNo>
+        <Price max="1000">850</Price>
+    </Book>
+</Books>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE library SYSTEM "lab 4.8.dtd">
+<?xml-stylesheet type="text/xsl" href="lab 4.8.xsl"?>
+<library>
+    <book>
+        <title>The Happiness you got in Life</title>
+        <location>Kathmandu</location>
+        <publisher>Asmita</publisher>
+        <year>2022</year>
+    </book>
+    <book>
+        <title>The Wings</title>
+        <location>Lalitpur</location>
+        <publisher>Goodwill</publisher>
+        <year>2023</year>
+    </book>
+</library>
